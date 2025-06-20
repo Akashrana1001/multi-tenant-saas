@@ -8,8 +8,13 @@ app.use(cors());
 app.use(express.json());
 
 const authRoutes = require('./routes/auth')
+
 const protectedRoutes = require('./routes/protected');
 app.use('/api/protected',protectedRoutes);
+
+const todoRoutes = require('./routes/todo')
+app.use('/api/todos',todoRoutes)
+
 //connecting the mongoDb
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser:true,
