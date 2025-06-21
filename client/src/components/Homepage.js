@@ -293,21 +293,21 @@ const Homepage = () => {
                   <div className="health-bar">
                     <div className="health-fill" style={{ width: "45%" }}></div>
                   </div>
-                  <span className="health-value">45%</span>
+                  <span className="health-value"></span>
                 </div>
                 <div className="health-item">
                   <div className="health-label">Memory</div>
                   <div className="health-bar">
                     <div className="health-fill" style={{ width: "67%" }}></div>
                   </div>
-                  <span className="health-value">67%</span>
+                  <span className="health-value"></span>
                 </div>
                 <div className="health-item">
                   <div className="health-label">Storage</div>
                   <div className="health-bar">
                     <div className="health-fill" style={{ width: "23%" }}></div>
                   </div>
-                  <span className="health-value">23%</span>
+                  <span className="health-value"></span>
                 </div>
               </div>
             </div>
