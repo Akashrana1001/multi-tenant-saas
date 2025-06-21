@@ -6,6 +6,7 @@ import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
 import Projects from './components/Projects';
 import Clients from './components/Clients';
+import AdminRoute from './components/AdminRoute';
 import TeamManagement from './components/TeamManagement';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -29,9 +30,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <PrivateRoute>
+            <AdminRoute>
               <Dashboard />
-            </PrivateRoute>
+            </AdminRoute>
           }
         />
         <Route
@@ -53,9 +54,9 @@ function App() {
         <Route
           path="/team"
           element={
-            <PrivateRoute>
+            <AdminRoute>
               <TeamManagement />
-            </PrivateRoute>
+            </AdminRoute>
           }
         />
       </Routes>
