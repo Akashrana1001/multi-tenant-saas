@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
-const authMiddleware = require('../middleware/authmiddleware');
+const authmiddleware = require('../middleware/authmiddleware');
 
 // GET /api/projects - fetch all projects for a tenant
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', authmiddleware, async (req, res) => {
   try {
     const projects = await Project.find({ tenantId: req.user.tenantId });
     res.json(projects);
@@ -14,7 +14,7 @@ router.get('/', authMiddleware, async (req, res) => {
 });
 
 // POST /api/projects - create a new project
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', authmiddleware, async (req, res) => {
   try {
     const { name, description } = req.body;
 

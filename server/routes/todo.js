@@ -1,10 +1,10 @@
 const express = require('express');
 const Todo = require('../models/Todo');
-const authMiddleware = require('../middleware/authMiddleware');
+const authmiddleware = require('../middleware/authmiddleware');
 
 const router = express.Router();
 
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', authmiddleware, async (req, res) => {
   try {
     const todos = await Todo.find({ tenantId: req.user.tenantId });
     res.json(todos);
@@ -14,7 +14,7 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', authmiddleware, async (req, res) => {
   try {
     const { task } = req.body;
 

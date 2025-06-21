@@ -2,10 +2,10 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const User = require('../models/User');
-const authMiddleware = require('../middleware/authmiddleware');
+const authmiddleware = require('../middleware/authmiddleware');
 
 // GET: Fetch team members
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', authmiddleware, async (req, res) => {
   try {
     const teamMembers = await User.find({
       tenantId: req.user.tenantId,
@@ -18,7 +18,7 @@ router.get('/', authMiddleware, async (req, res) => {
 });
 
 // ✅ POST: Add a new team member
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', authmiddleware, async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
