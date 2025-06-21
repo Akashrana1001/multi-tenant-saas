@@ -48,6 +48,11 @@ const Login = () => {
       <p>
         Don't have an account? <Link to="/signup">Signup here</Link>
       </p>
+      <p>
+        <Link to="/forgot-password" style={{ color: "#1e88e5" }}>
+          Forgot Password?
+        </Link>
+      </p>
     </div>
   );
 };

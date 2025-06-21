@@ -1,4 +1,4 @@
-/* Premium Signup CSS - Desktop First Design */
+/* Premium Signup CSS - Matching Dashboard & Login Theme */
 * {
   margin: 0;
   padding: 0;
@@ -9,189 +9,301 @@ body {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   background: #0f0f23;
   color: #e2e8f0;
-  overflow: hidden;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
+/* Animated Background - Enhanced for Signup */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.1)),
+    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(139, 92, 246, 0.25) 0%, transparent 50%);
+  pointer-events: none;
+  animation: floatSignup 25s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes floatSignup {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+    opacity: 1;
+  }
+  33% { 
+    transform: translateY(-30px) rotate(1deg) scale(1.02); 
+    opacity: 0.9;
+  }
+  66% { 
+    transform: translateY(-15px) rotate(-0.5deg) scale(0.98); 
+    opacity: 0.95;
+  }
+}
+
+/* Enhanced Floating Particles */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(3px 3px at 15px 25px, rgba(139, 92, 246, 0.5), transparent),
+    radial-gradient(2px 2px at 45px 65px, rgba(59, 130, 246, 0.4), transparent),
+    radial-gradient(1px 1px at 85px 35px, rgba(16, 185, 129, 0.5), transparent),
+    radial-gradient(2px 2px at 125px 75px, rgba(139, 92, 246, 0.4), transparent),
+    radial-gradient(1px 1px at 155px 25px, rgba(59, 130, 246, 0.3), transparent),
+    radial-gradient(3px 3px at 185px 85px, rgba(16, 185, 129, 0.4), transparent);
+  background-repeat: repeat;
+  background-size: 200px 120px;
+  animation: sparkleSignup 18s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes sparkleSignup {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-60px) translateX(10px); }
+  100% { transform: translateY(-120px) translateX(-5px); }
+}
+
+/* Main Container */
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.1));
-  position: relative;
   padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
+/* Signup Card */
+.container {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  backdrop-filter: blur(25px);
+  border-radius: 32px;
+  padding: 3.5rem 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 35px 90px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 50px rgba(139, 92, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInScale 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInScale {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.85) rotateX(10deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(20px) scale(0.95) rotateX(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+/* Enhanced Gradient Border Effect */
 .container::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.3) 0%, transparent 50%);
-  pointer-events: none;
-  animation: floatSignup 18s ease-in-out infinite;
+  height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6, #10b981, #8b5cf6, #6366f1);
+  background-size: 400% 100%;
+  border-radius: 32px 32px 0 0;
+  animation: gradientShiftSignup 4s ease-in-out infinite;
 }
 
-@keyframes floatSignup {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-12px) rotate(0.5deg); }
-  50% { transform: translateY(8px) rotate(-0.5deg); }
-  75% { transform: translateY(-8px) rotate(0.3deg); }
+@keyframes gradientShiftSignup {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 0%; }
+  75% { background-position: 150% 0%; }
 }
 
-/* Signup Card */
-.container > * {
-  position: relative;
-  z-index: 1;
-}
-
-h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #10b981, #8b5cf6, #3b82f6);
+/* Signup Heading */
+.container h2 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #10b981, #8b5cf6);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 2.5rem;
   text-align: center;
-  letter-spacing: -0.02em;
-  animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.form {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
-  backdrop-filter: blur(25px);
-  border-radius: 24px;
-  padding: 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  min-width: 500px;
-  max-width: 550px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.04em;
+  animation: gradientTextSignup 5s ease-in-out infinite;
+  text-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
   position: relative;
-  animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes gradientTextSignup {
+  0%, 100% { background-position: 0% 50%; }
+  33% { background-position: 50% 100%; }
+  66% { background-position: 100% 0%; }
 }
 
-.form::before {
-  content: '';
+/* Enhanced Glow Effect for Title */
+.container h2::after {
+  content: 'Signup';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #10b981, #8b5cf6, #3b82f6);
-  border-radius: 24px 24px 0 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #10b981);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(15px);
+  opacity: 0.6;
+  animation: gradientTextSignup 5s ease-in-out infinite;
+}
+
+/* Form Styling - Enhanced for 4 inputs */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
 .form input {
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   font-size: 1.1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(16, 185, 129, 0.3);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
   color: #f1f5f9;
   outline: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   font-weight: 500;
+  position: relative;
 }
 
-.form input:nth-child(even) {
-  border-color: rgba(139, 92, 246, 0.3);
+/* Different border colors for each input */
+.form input:nth-child(1) {
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
-.form input:nth-child(3n) {
-  border-color: rgba(59, 130, 246, 0.3);
+.form input:nth-child(2) {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.form input:nth-child(3) {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.form input:nth-child(4) {
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
 .form input::placeholder {
   color: #94a3b8;
-  font-weight: 400;
+  font-weight: 500;
   text-transform: capitalize;
 }
 
-.form input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 0 0 4px rgba(16, 185, 129, 0.2),
-    0 8px 25px rgba(16, 185, 129, 0.3);
-  transform: translateY(-2px);
-}
-
-.form input:nth-child(even):focus {
+/* Enhanced Focus States for Each Input */
+.form input:nth-child(1):focus {
   border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.1);
   box-shadow: 
-    0 0 0 4px rgba(139, 92, 246, 0.2),
-    0 8px 25px rgba(139, 92, 246, 0.3);
+    0 0 0 4px rgba(139, 92, 246, 0.25),
+    0 10px 30px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
-.form input:nth-child(3n):focus {
+.form input:nth-child(2):focus {
   border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
   box-shadow: 
-    0 0 0 4px rgba(59, 130, 246, 0.2),
-    0 8px 25px rgba(59, 130, 246, 0.3);
+    0 0 0 4px rgba(59, 130, 246, 0.25),
+    0 10px 30px rgba(59, 130, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
-.form input:focus {
+.form input:nth-child(3):focus {
   border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 
+    0 0 0 4px rgba(16, 185, 129, 0.25),
+    0 10px 30px rgba(16, 185, 129, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
-.form input:hover {
-  background: rgba(255, 255, 255, 0.12);
+.form input:nth-child(4):focus {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.1);
+  box-shadow: 
+    0 0 0 4px rgba(139, 92, 246, 0.25),
+    0 10px 30px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
-.form input:hover:nth-child(even) {
-  border-color: rgba(139, 92, 246, 0.5);
+/* Enhanced Input Animation */
+.form input:focus::placeholder {
+  transform: translateY(-2px);
+  color: #cbd5e1;
 }
 
-.form input:hover:nth-child(3n) {
-  border-color: rgba(59, 130, 246, 0.5);
-}
-
-.form input:hover {
-  border-color: rgba(16, 185, 129, 0.5);
-}
-
+/* Submit Button - Enhanced */
 .form button {
-  grid-column: 1 / -1;
-  padding: 1.25rem;
+  padding: 1.6rem 2rem;
   font-size: 1.2rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #10b981, #8b5cf6);
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1, #3b82f6, #10b981);
+  background-size: 300% 300%;
   color: white;
   border: none;
-  border-radius: 16px;
+  border-radius: 20px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  box-shadow: 
+    0 15px 35px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
-  margin-top: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+  animation: buttonGradient 6s ease-in-out infinite;
 }
 
+@keyframes buttonGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Enhanced Button Shimmer Effect */
 .form button::before {
   content: '';
   position: absolute;
@@ -199,8 +311,8 @@ h2 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s ease;
 }
 
 .form button:hover::before {
@@ -208,171 +320,160 @@ h2 {
 }
 
 .form button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
-  background: linear-gradient(135deg, #059669, #7c3aed);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(139, 92, 246, 0.6),
+    0 0 30px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background-size: 400% 400%;
+  animation: buttonPulseSignup 0.6s ease-in-out, buttonGradient 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulseSignup {
+  0%, 100% { 
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4); 
+  }
+  50% { 
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.6); 
+  }
 }
 
 .form button:active {
-  transform: translateY(-1px);
+  transform: translateY(-3px) scale(0.98);
 }
 
-/* Link Styling */
-p {
-  margin-top: 2rem;
+/* Link Styling - Enhanced */
+.container p {
   text-align: center;
+  font-size: 1.1rem;
   color: #cbd5e1;
-  font-size: 1rem;
-  animation: fadeIn 0.8s ease 0.4s both;
+  font-weight: 500;
+  margin-top: 1rem;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-p a {
-  color: #10b981;
+.container p .Link,
+.container p a {
+  color: #8b5cf6;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
   transition: all 0.3s ease;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #10b981);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: linkGradient 4s ease-in-out infinite;
 }
 
-p a::after {
+@keyframes linkGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container p .Link:hover,
+.container p a:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  animation: linkGradient 1s ease-in-out infinite;
+}
+
+.container p .Link::after,
+.container p a::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #10b981, #8b5cf6);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6, #10b981);
+  transition: width 0.4s ease;
 }
 
-p a:hover::after {
+.container p .Link:hover::after,
+.container p a:hover::after {
   width: 100%;
-}
-
-p a:hover {
-  color: #34d399;
-  transform: translateY(-1px);
-}
-
-/* Floating Elements */
-.container::after {
-  content: '';
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(139, 92, 246, 0.2));
-  border-radius: 50%;
-  bottom: 15%;
-  left: 10%;
-  animation: floatReverse 14s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes floatReverse {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  50% { transform: translateY(-25px) translateX(15px) rotate(180deg); }
-}
-
-/* Additional floating element */
-.form::after {
-  content: '';
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
-  border-radius: 50%;
-  top: -30px;
-  right: -30px;
-  animation: pulse 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.1); opacity: 1; }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  body {
-    overflow: auto;
+  .container {
+    padding: 2.5rem 2rem;
+    margin: 1rem;
+    border-radius: 24px;
+    max-width: 95%;
   }
   
-  .container {
-    padding: 1rem;
-    min-height: 100vh;
+  .container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
   
   .form {
-    min-width: auto;
-    padding: 2rem;
-    margin: 1rem 0;
-    grid-template-columns: 1fr;
     gap: 1rem;
   }
   
-  h2 {
-    font-size: 2.5rem;
+  .form input {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 16px;
+  }
+  
+  .form button {
+    padding: 1.25rem 1.75rem;
+    font-size: 1.1rem;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .container {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    margin: 0.5rem;
+  }
+  
+  .container h2 {
+    font-size: 2.2rem;
+  }
+  
+  .form {
+    gap: 1rem;
   }
   
   .form input,
   .form button {
     font-size: 1rem;
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
-  .form {
-    padding: 1.5rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
-}
-
-/* Input Focus Enhancement */
-.form input:focus + .form input {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Loading state for form */
-.form.loading button {
-  pointer-events: none;
+/* Loading State */
+.form button:disabled {
   opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  animation: none;
 }
 
-.form.loading button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 2px solid transparent;
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.form button:disabled:hover {
+  transform: none;
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+  animation: none;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* Success State Animation */
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-/* Enhanced form validation styles */
-.form input:invalid:not(:focus):not(:placeholder-shown) {
-  border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
-}
-
-.form input:valid:not(:focus):not(:placeholder-shown) {
-  border-color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
+.container.success {
+  animation: successPulse 0.6s ease-in-out;
+  border-color: rgba(16, 185, 129, 0.5);
 }
