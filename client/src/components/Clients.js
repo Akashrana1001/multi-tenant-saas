@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
-  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (!token) {
-      navigate('/');
+      navigate("/");
       return;
     }
     fetchClients();
@@ -19,29 +19,27 @@ const Clients = () => {
 
   const fetchClients = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/clients', {
+      const res = await axios.get("http://localhost:5000/api/clients", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClients(res.data);
     } catch (err) {
       console.error(err);
-      alert('Error fetching clients');
+      alert("Error fetching clients");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/clients',
-        form,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const res = await axios.post("http://localhost:5000/api/clients", form, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setClients([...clients, res.data]);
-      setForm({ name: '', email: '', phone: '' });
+      setForm({ name: "", email: "", phone: "" });
     } catch (err) {
       console.error(err);
-      alert('Error creating client');
+      alert("Error creating client");
     }
   };
 

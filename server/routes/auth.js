@@ -1,54 +1,53 @@
-const express = require('express');
-const bcrypt = require('bcryptjs'); // For hashing passwords
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const express = require("express");
+const bcrypt = require("bcryptjs"); // For hashing passwords
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 const router = express.Router();
 
 // Signup Route
-router.post('/signup', async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const { name, email, password, tenantId } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists)
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-   const user = new User({
-  name,
-  email,
-  password: hashedPassword,
-  tenantId,
-  isAdmin: true 
-});
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      tenantId,
+      isAdmin: true,
+    });
     await user.save();
 
-    res.status(201).json({ message: 'Registration successful' });
+    res.status(201).json({ message: "Registration successful" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Something went wrong in signup' });
+    res.status(500).json({ message: "Something went wrong in signup" });
   }
 });
 
 // Login Route
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
     if (!user)
-      return res.status(400).json({ message: 'Wrong email or user not found' });
+      return res.status(400).json({ message: "Wrong email or user not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(400).json({ message: 'Wrong password' });
+    if (!isMatch) return res.status(400).json({ message: "Wrong password" });
 
     const token = jwt.sign(
       { id: user._id, tenantId: user.tenantId },
       process.env.JWT_SECRET,
-      { expiresIn: '1d' }
+      { expiresIn: "1d" }
     );
 
     res.status(200).json({
@@ -62,7 +61,7 @@ router.post('/login', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Something went wrong with login' });
+    res.status(500).json({ message: "Something went wrong with login" });
   }
 });
 

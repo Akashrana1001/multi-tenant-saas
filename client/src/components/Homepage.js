@@ -1,36 +1,37 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../Styles/homepage.css'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../Styles/homepage.css";
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const  navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("User loaded:", user);
+  const navigate = useNavigate();
   const handleLogout = () => {
     setIsLoggedIn(false);
-    alert('Logged out successfully!');
-    navigate('/');
+    alert("Logged out successfully!");
+    navigate("/");
   };
 
   const handleNavigation = (path) => {
     alert(`Navigating to: ${path}`);
-    navigate(`${path}`)
+    navigate(`${path}`);
   };
 
   const primaryNavItems = [
-    { icon: '📋', label: 'Dashboard', path: '/dashboard', size: 'large' },
-    { icon: '📊', label: 'Clients', path: '/clients', size: 'medium' },
-    { icon: '👥', label: 'Team Management', path: '/team', size: 'large' },
-    { icon: '💼', label: 'Projects', path: '/projects', size: 'small' }
+    { icon: "📋", label: "Dashboard", path: "/dashboard", size: "large" },
+    { icon: "📊", label: "Clients", path: "/clients", size: "medium" },
+    { icon: "👥", label: "Team Management", path: "/team", size: "large" },
+    { icon: "💼", label: "Projects", path: "/projects", size: "small" },
   ];
 
   const secondaryNavItems = [
-    { icon: '⚙️', label: 'Settings', path: '/settings' },
-    { icon: '📚', label: 'Documentation', path: '/docs' },
-    { icon: '📞', label: 'Support', path: '/contact' },
-    { icon: '❓', label: 'Help Center', path: '/help' },
-    { icon: '🔔', label: 'Notifications', path: '/notifications' },
-    { icon: '📈', label: 'Reports', path: '/reports' }
+    { icon: "⚙️", label: "Settings", path: "/settings" },
+    { icon: "📚", label: "Documentation", path: "/docs" },
+    { icon: "📞", label: "Support", path: "/contact" },
+    { icon: "❓", label: "Help Center", path: "/help" },
+    { icon: "🔔", label: "Notifications", path: "/notifications" },
+    { icon: "📈", label: "Reports", path: "/reports" },
   ];
 
   return (
@@ -59,12 +60,12 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="header-actions">
             <div className="user-profile">
               <div className="user-avatar">👤</div>
               <div className="user-info">
-                <span className="user-name">John Doe</span>
+                <span>Hello, {user?.name || "Admin"} 👋</span>
                 <span className="user-role">Administrator</span>
               </div>
             </div>
@@ -89,8 +90,9 @@ const Homepage = () => {
               <span className="hero-title-accent"> Business Hub</span>
             </h1>
             <p className="hero-description">
-              Orchestrate your entire digital ecosystem from one intelligent platform. 
-              Monitor performance, manage teams, and drive growth with unprecedented clarity.
+              Orchestrate your entire digital ecosystem from one intelligent
+              platform. Monitor performance, manage teams, and drive growth with
+              unprecedented clarity.
             </p>
             <div className="hero-metrics">
               <div className="metric">
@@ -107,7 +109,7 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="hero-right">
             <div className="hero-visual">
               <div className="visual-card card-1">
@@ -118,15 +120,15 @@ const Homepage = () => {
                 <div className="card-content">
                   <span className="card-value">+127%</span>
                   <div className="card-chart">
-                    <div className="chart-bar" style={{height: '20%'}}></div>
-                    <div className="chart-bar" style={{height: '45%'}}></div>
-                    <div className="chart-bar" style={{height: '80%'}}></div>
-                    <div className="chart-bar" style={{height: '100%'}}></div>
-                    <div className="chart-bar" style={{height: '65%'}}></div>
+                    <div className="chart-bar" style={{ height: "20%" }}></div>
+                    <div className="chart-bar" style={{ height: "45%" }}></div>
+                    <div className="chart-bar" style={{ height: "80%" }}></div>
+                    <div className="chart-bar" style={{ height: "100%" }}></div>
+                    <div className="chart-bar" style={{ height: "65%" }}></div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="visual-card card-2">
                 <div className="card-header">
                   <span className="card-icon">👥</span>
@@ -137,7 +139,7 @@ const Homepage = () => {
                   <span className="card-trend">+23% this week</span>
                 </div>
               </div>
-              
+
               <div className="visual-card card-3">
                 <div className="card-header">
                   <span className="card-icon">⚡</span>
@@ -187,7 +189,7 @@ const Homepage = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="nav-right">
             <h2 className="section-title">Tools & Resources</h2>
             <div className="secondary-nav-grid">
@@ -211,9 +213,11 @@ const Homepage = () => {
         <div className="preview-container">
           <div className="preview-header">
             <h2 className="preview-title">Real-time Insights</h2>
-            <p className="preview-subtitle">Monitor your business performance at a glance</p>
+            <p className="preview-subtitle">
+              Monitor your business performance at a glance
+            </p>
           </div>
-          
+
           <div className="preview-grid">
             <div className="preview-card large-card">
               <div className="card-header">
@@ -247,55 +251,61 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="preview-card">
               <h3>Recent Activity</h3>
               <div className="activity-feed">
                 <div className="activity-item">
                   <div className="activity-dot"></div>
                   <div className="activity-content">
-                    <span className="activity-text">New project "Alpha Launch" created</span>
+                    <span className="activity-text">
+                      New project "Alpha Launch" created
+                    </span>
                     <span className="activity-time">2 min ago</span>
                   </div>
                 </div>
                 <div className="activity-item">
                   <div className="activity-dot"></div>
                   <div className="activity-content">
-                    <span className="activity-text">Team member Sarah joined</span>
+                    <span className="activity-text">
+                      Team member Sarah joined
+                    </span>
                     <span className="activity-time">1 hour ago</span>
                   </div>
                 </div>
                 <div className="activity-item">
                   <div className="activity-dot"></div>
                   <div className="activity-content">
-                    <span className="activity-text">Monthly report generated</span>
+                    <span className="activity-text">
+                      Monthly report generated
+                    </span>
                     <span className="activity-time">3 hours ago</span>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="preview-card">
               <h3>System Health</h3>
               <div className="health-indicators">
                 <div className="health-item">
                   <div className="health-label">CPU Usage</div>
                   <div className="health-bar">
-                    <div className="health-fill" style={{width: '45%'}}></div>
+                    <div className="health-fill" style={{ width: "45%" }}></div>
                   </div>
                   <span className="health-value">45%</span>
                 </div>
                 <div className="health-item">
                   <div className="health-label">Memory</div>
                   <div className="health-bar">
-                    <div className="health-fill" style={{width: '67%'}}></div>
+                    <div className="health-fill" style={{ width: "67%" }}></div>
                   </div>
                   <span className="health-value">67%</span>
                 </div>
                 <div className="health-item">
                   <div className="health-label">Storage</div>
                   <div className="health-bar">
-                    <div className="health-fill" style={{width: '23%'}}></div>
+                    <div className="health-fill" style={{ width: "23%" }}></div>
                   </div>
                   <span className="health-value">23%</span>
                 </div>
@@ -313,11 +323,11 @@ const Homepage = () => {
               <span className="footer-logo-text">MultiSaaS</span>
             </div>
             <p className="footer-description">
-              Empowering businesses with intelligent automation and seamless integration.
+              Empowering businesses with intelligent automation and seamless
+              integration.
             </p>
           </div>
           <div className="footer-right">
-           
             <p className="footer-copyright">
               © 2025 MultiSaaS Portal. All rights reserved.
             </p>
