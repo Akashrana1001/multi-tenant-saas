@@ -15,6 +15,16 @@ app.use('/api/protected',protectedRoutes);
 const todoRoutes = require('./routes/todo')
 app.use('/api/todos',todoRoutes)
 
+const teamRoutes = require('./routes/team');
+app.use('/api/team', teamRoutes);
+
+const projectRoutes = require('./routes/projects');
+app.use('/api/projects', projectRoutes);
+
+
+const clientsRoutes = require('./routes/client');
+app.use('/api/clients', clientsRoutes);
+
 //connecting the mongoDb
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser:true,

@@ -16,7 +16,13 @@ router.post('/signup', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = new User({ name, email, password: hashedPassword, tenantId });
+   const user = new User({
+  name,
+  email,
+  password: hashedPassword,
+  tenantId,
+  isAdmin: true 
+});
     await user.save();
 
     res.status(201).json({ message: 'Registration successful' });
