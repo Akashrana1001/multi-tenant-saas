@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/signup.css';
+import API from '../api'; // adjust the path if needed
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -13,7 +14,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://multi-tenant-saas.onrender.com/api/auth/signup', {
+      const res = await API.post('/api/auth/signup', {
         name,
         email,
         password,

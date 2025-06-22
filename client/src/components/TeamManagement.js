@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'axios';import API from '../api'; // adjust the path if needed
+
 
 const TeamManagement = () => {
   const [team, setTeam] = useState([]);
@@ -11,7 +12,7 @@ const TeamManagement = () => {
 
   const fetchTeam = async () => {
     try {
-      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/team', {
+      const res = await API.get('/api/team', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTeam(res.data);
@@ -24,8 +25,8 @@ const TeamManagement = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://multi-tenant-saas.onrender.com/api/team',
+      const res = await API.post(
+        '/api/team',
         { name, email, password },
         { headers: { Authorization: `Bearer ${token}` } }
       );

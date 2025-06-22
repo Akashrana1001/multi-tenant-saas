@@ -3,6 +3,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/dashboard.css';
+import API from '../api'; // adjust the path if needed
 
 const Dashboard = () => {
   const [user, setUser] = useState({});
@@ -17,7 +18,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
-  // Decode token to get user info
   useEffect(() => {
     if (!token) {
       navigate('/');
@@ -39,13 +39,13 @@ const Dashboard = () => {
   const fetchStats = async () => {
     try {
       const [resProjects, resTeam, resClients] = await Promise.all([
-        axios.get('http://multi-tenant-saas.onrender.com/api/projects', {
+        API.get('/api/projects', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get('http://multi-tenant-saas.onrender.com/api/team', {
+        API.get('/api/team', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get('http://multi-tenant-saas.onrender.com/api/clients', {
+        API.get('/api/clients', {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/todos', {
+      const res = await API.get('/api/todos', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTodos(res.data);
@@ -74,8 +74,8 @@ const Dashboard = () => {
   const createTodo = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://multi-tenant-saas.onrender.com/api/todos',
+      const res = await API.post(
+        '/api/todos',
         { task },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -87,22 +87,21 @@ const Dashboard = () => {
   };
 
   const handleExport = async (type) => {
-  try {
-    const res = await axios.get(`http://multi-tenant-saas.onrender.com/api/${type}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+      const res = await API.get(`/api/${type}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    const data = JSON.stringify(res.data, null, 2);
-    const blob = new Blob([data], { type: 'application/json' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${type}-${user.tenantId}.json`;
-    link.click();
-  } catch (err) {
-    alert(`Error exporting ${type}`);
-  }
-};
-
+      const data = JSON.stringify(res.data, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${type}-${user.tenantId}.json`;
+      link.click();
+    } catch (err) {
+      alert(`Error exporting ${type}`);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -143,12 +142,14 @@ const Dashboard = () => {
         />
         <button type="submit">Add Todo</button>
       </form>
-<div className="export-buttons">
-  <button onClick={() => handleExport('projects')}>⬇️ Export Projects</button>
-  <button onClick={() => handleExport('clients')}>⬇️ Export Clients</button>
-  <button onClick={() => handleExport('team')}>⬇️ Export Team</button>
-</div>
-      <ul>
+
+      <div className="export-buttons">
+        <button onClick={() => handleExport('projects')}>⬇️ Export Projects</button>
+        <button onClick={() => handleExport('clients')}>⬇️ Export Clients</button>
+        <button onClick={() => handleExport('team')}>⬇️ Export Team</button>
+      </div>
+
+      <ul className="todo-list">
         {todos.map((todo) => (
           <li key={todo._id}>
             {todo.task} {todo.completed ? '✅' : '❌'}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API from '../api'; // adjust the path if needed
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -11,7 +12,7 @@ const ResetPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://multi-tenant-saas.onrender.com/api/auth/reset-password/${token}`, { password });
+      const res = await API.post(`http://multi-tenant-saas.onrender.com/api/auth/reset-password/${token}`, { password });
       setMessage(res.data.message || 'Password updated!');
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {

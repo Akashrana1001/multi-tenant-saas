@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/homepage.css";
+import API from '../api'; // adjust the path if needed
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);

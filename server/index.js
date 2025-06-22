@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors({
    origin: [
-    'https://multi-tenant-saas-one.vercel.app/', 
+    'https://multi-tenant-saas-one.vercel.app', 
     'http://localhost:3000'        
     ],         
   credentials: true,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from '../api'; // adjust the path if needed
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -18,7 +19,7 @@ const Clients = () => {
   }, []);
   const fetchClients = async () => {
     try {
-      const res = await axios.get("http://multi-tenant-saas.onrender.com/api/clients", {
+      const res = await API.get("/api/clients", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClients(res.data);
@@ -31,7 +32,7 @@ const Clients = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://multi-tenant-saas.onrender.com/api/clients", form, {
+      const res = await API.post("/api/clients", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClients([...clients, res.data]);

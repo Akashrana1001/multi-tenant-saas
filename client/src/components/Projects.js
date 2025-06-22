@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import API from '../api'; // adjust the path if needed
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -22,7 +23,7 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/projects', {
+      const res = await API.get('/api/projects', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
@@ -35,8 +36,8 @@ const Projects = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://multi-tenant-saas.onrender.com/api/projects',
+      const res = await API.post(
+        '/api/projects',
         { name, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

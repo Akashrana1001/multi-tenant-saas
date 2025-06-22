@@ -3,22 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Styles/login.css";
 
+import API from "../api";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+  API.post("/api/auth/login", { email, password });
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const res = await API.post("/api/auth/login", {
+        email,
+        password,
+      });
 
       localStorage.setItem("token", res.data.token); // store JWT
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -61,5 +61,3 @@ const Login = () => {
 };
 
 export default Login;
-
-

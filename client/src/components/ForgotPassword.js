@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API from '../api'; // adjust the path if needed
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://multi-tenant-saas.onrender.com/api/auth/forgot-password', { email });
+      const res = await API.post('/api/auth/forgot-password', { email });
       setMessage(res.data.message || 'Reset link sent to your email');
     } catch (err) {
       setMessage(err.response?.data?.message || 'Error occurred');
