@@ -22,7 +22,7 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/projects', {
+      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/projects', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
@@ -36,7 +36,7 @@ const Projects = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/projects',
+        'http://multi-tenant-saas.onrender.com/api/projects',
         { name, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

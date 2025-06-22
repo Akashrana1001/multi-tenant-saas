@@ -11,7 +11,7 @@ const TeamManagement = () => {
 
   const fetchTeam = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/team', {
+      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/team', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTeam(res.data);
@@ -25,7 +25,7 @@ const TeamManagement = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/team',
+        'http://multi-tenant-saas.onrender.com/api/team',
         { name, email, password },
         { headers: { Authorization: `Bearer ${token}` } }
       );

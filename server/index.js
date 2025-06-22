@@ -4,8 +4,13 @@ const mongoose = require('mongoose')
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+   origin: [
+    'https://multi-tenant-saas-one.vercel.app/', 
+    'http://localhost:3000'        
+    ],         
+  credentials: true,
+}));app.use(express.json());
 
 const authRoutes = require('./routes/auth')
 

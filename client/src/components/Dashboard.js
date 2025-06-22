@@ -39,13 +39,13 @@ const Dashboard = () => {
   const fetchStats = async () => {
     try {
       const [resProjects, resTeam, resClients] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects', {
+        axios.get('http://multi-tenant-saas.onrender.com/api/projects', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get('http://localhost:5000/api/team', {
+        axios.get('http://multi-tenant-saas.onrender.com/api/team', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get('http://localhost:5000/api/clients', {
+        axios.get('http://multi-tenant-saas.onrender.com/api/clients', {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/todos', {
+      const res = await axios.get('http://multi-tenant-saas.onrender.com/api/todos', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTodos(res.data);
@@ -75,7 +75,7 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/todos',
+        'http://multi-tenant-saas.onrender.com/api/todos',
         { task },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -88,7 +88,7 @@ const Dashboard = () => {
 
   const handleExport = async (type) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/${type}`, {
+    const res = await axios.get(`http://multi-tenant-saas.onrender.com/api/${type}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 

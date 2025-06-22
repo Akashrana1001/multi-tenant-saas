@@ -16,10 +16,9 @@ const Clients = () => {
     }
     fetchClients();
   }, []);
-
   const fetchClients = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/clients", {
+      const res = await axios.get("http://multi-tenant-saas.onrender.com/api/clients", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClients(res.data);
@@ -32,7 +31,7 @@ const Clients = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/clients", form, {
+      const res = await axios.post("http://multi-tenant-saas.onrender.com/api/clients", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClients([...clients, res.data]);
