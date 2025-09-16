@@ -42,6 +42,11 @@ app.use('/api/projects', projectRoutes);
 const clientsRoutes = require('./routes/client');
 app.use('/api/clients', clientsRoutes);
 
+app.get('/health', (req, res) => {
+  const dbState = mongoose.connection.readyState === 1 ? "connected" : "disconnected";
+  res.json({ status: "ok", db: dbState, uptime: process.uptime() });
+});
+
 //connecting the mongoDb
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser:true,
