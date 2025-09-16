@@ -17,4 +17,6 @@ const clientSchema = new mongoose.Schema({
   },
 });
 
+clientSchema.index({ tenantId: 1, email: 1 });
+
 module.exports = mongoose.model('Client', clientSchema);

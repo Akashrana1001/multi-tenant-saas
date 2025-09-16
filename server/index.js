@@ -3,14 +3,26 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config();
 
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const errorHandler = require('./middleware/errorHandler.js');
 const app = express();
 app.use(cors({
-   origin: [
-    'https://multi-tenant-saas-one.vercel.app', 
-    'http://localhost:3000'        
-    ],         
-  credentials: true,
+    origin: [
+        'https://multi-tenant-saas-one.vercel.app',
+        'http://localhost:3000',
+        '*'
+    ],
+    credentials: true,
 }));app.use(express.json());
+app.use(errorHandler);
+
+
+app.use(helmet());
+app.use(rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200, // 200 requests per 15 mins per IP
+}));
 
 const authRoutes = require('./routes/auth')
 

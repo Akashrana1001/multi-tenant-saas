@@ -8,4 +8,6 @@ const todoSchema = mongoose.Schema({
     userId:String
 });
 
+ todoSchema.index({ tenantId: 1, completed: 1 });
+
 module.exports = mongoose.model('Todo',todoSchema);

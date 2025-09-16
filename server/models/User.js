@@ -27,4 +27,6 @@ resetTokenExpires: Date,
 
 });
 
+userSchema.index({ tenantId: 1, email: 1 });
+
 module.exports = mongoose.model("User", userSchema);

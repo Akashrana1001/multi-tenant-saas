@@ -2,9 +2,9 @@ const express = require("express");
 const bcrypt = require("bcryptjs"); // For hashing passwords
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-
+const permit = require('../middleware/roles');
 const router = express.Router();
-
+const authmiddleware = require("../middleware/authmiddleware.js")
 const transporter = require('../config/mailer');
 const crypto = require('crypto');
 
@@ -98,6 +98,11 @@ router.post("/login", async (req, res) => {
     console.error(err);
     res.status(500).json({ message: "Something went wrong with login" });
   }
+});
+
+
+router.post('/', authmiddleware, permit('admin'), async (req, res) => {
+  // Only admins can create projects
 });
 
 module.exports = router;
