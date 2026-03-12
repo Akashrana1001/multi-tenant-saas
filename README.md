@@ -39,14 +39,15 @@ A powerful full-stack SaaS application built for company heads to manage project
 ```bash
 multi-tenant-saas/
 ├── client/                 # React frontend
-│   ├── src/pages/
 │   ├── src/components/
-│   └── tailwind.config.js
+│   └── src/Styles/
 ├── server/                 # Node backend
 │   ├── routes/
 │   ├── models/
 │   ├── middleware/
 │   └── config/
+├── docker-compose.yml      # Docker configuration
+└── README.md
 ```
 
 ---
