@@ -2,8 +2,6 @@
 
 A powerful full-stack SaaS application built for company heads to manage projects, team members, and clients — with tenant-based data separation, role-based access control, and export-ready dashboards.
 
-🚀 Live Demo: [View on Vercel](https://multi-tenant-saas-one.vercel.app/home)  
-🟢 Backend API: [View on Render](https://multi-tenant-saas.onrender.com)
 
 > Built with 💡 scalability, 🛡️ security, and 🔥 modern tech.
 
